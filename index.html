@@ -515,11 +515,6 @@
         <!-- Relatório Simplificado -->
         <div id="relatorio" class="hidden">
             <div class="report">
-                <div class="report-header">
-                    <div class="report-title">MANUTENÇÃO MATAPI</div>
-                    <div class="report-subtitle">Solicitação de Peças e Acessórios</div>
-                </div>
-
                 <div class="report-info">
                     <div class="info-section">
                         <h3>Dados do Solicitante</h3>
@@ -1044,44 +1039,6 @@
             }
         }
     </script>
-    <script>
-document.getElementById("btnGerarRelatorio").addEventListener("click", function(e) {
-  e.preventDefault();
-
-  const dados = {
-    solicitante: document.querySelector("input[name='nomeSolicitante']").value,
-    data: document.querySelector("input[name='dataSolicitacao']").value,
-    vtr: document.querySelector("input[name='prefixo']").value,
-    fabricante: document.querySelector("input[name='fabricante']").value,
-    modelo: document.querySelector("input[name='modelo']").value,
-    ano: document.querySelector("input[name='ano']").value,
-    chassi: document.querySelector("input[name='chassi']").value,
-    itens: []
-  };
-
-  // percorre os itens adicionados
-  document.querySelectorAll(".linha-item").forEach(row => {
-    dados.itens.push({
-      referencia: row.querySelector(".ref").textContent,
-      descricao: row.querySelector(".desc").textContent,
-      quantidade: row.querySelector(".qtd").textContent,
-      unidade: row.querySelector(".und").textContent,
-      link: row.querySelector(".link").textContent,
-      imagem: row.querySelector(".img").src
-    });
-  });
-
-  // envia para sua planilha via Apps Script
-  fetch("https://script.google.com/macros/s/AKfycbxya7hd_YmDW5ZPi14JtncfOsvWVUIWAnuU-VYA_iGt3m_WCA-VkWrVT1tfRvCbf_DIGQ/exec", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(dados)
-  })
-  .then(res => res.text())
-  .then(_ => alert("Dados enviados para a planilha!"))
-  .catch(err => alert("Erro ao enviar dados: " + err));
-});
-</script>
-
+    
 </body>
 </html>
