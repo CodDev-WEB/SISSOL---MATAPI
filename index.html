@@ -512,110 +512,110 @@
                             <span id="relSolicitante">-</span>
                         </div>
                         <div class="info-line">
-                        <span class="info-label">Data:</span>
-                        <span id="relDataSolicitacao">-</span>
+                            <span class="info-label">Data:</span>
+                            <span id="relDataSolicitacao">-</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>Dados do Veículo/Equipamento</h3>
+                        <div class="info-line">
+                            <span class="info-label">Prefixo:</span>
+                            <span id="relPrefixo">-</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">Fabricante:</span>
+                            <span id="relMarca">-</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">Modelo:</span>
+                            <span id="relModelo">-</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">Ano:</span>
+                            <span id="relAno">-</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">Chassi:</span>
+                            <span id="relChassi">-</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="info-section">
-                    <h3>Dados do Veículo/Equipamento</h3>
-                    <div class="info-line">
-                        <span class="info-label">Prefixo:</span>
-                        <span id="relPrefixo">-</span>
-                    </div>
-                    <div class="info-line">
-                        <span class="info-label">Fabricante:</span>
-                        <span id="relMarca">-</span>
-                    </div>
-                    <div class="info-line">
-                        <span class="info-label">Modelo:</span>
-                        <span id="relModelo">-</span>
-                    </div>
-                    <div class="info-line">
-                        <span class="info-label">Ano:</span>
-                        <span id="relAno">-</span>
-                    </div>
-                    <div class="info-line">
-                        <span class="info-label">Chassi:</span>
-                        <span id="relChassi">-</span>
-                    </div>
+                <div>
+                    <h3>Itens Solicitados</h3>
+                    <table class="items-simple-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">Item</th>
+                                <th style="width: 10%;">Qtd.</th>
+                                <th style="width: 10%;">Unid.</th>
+                                <th style="width: 15%;">Referência</th>
+                                <th style="width: 35%;">Descrição</th>
+                                <th style="width: 20%;">Link</th>
+                                <th style="width: 15%;">Imagem</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaItensSimples"></tbody>
+                    </table>
                 </div>
-            </div>
 
-            <div>
-                <h3>Itens Solicitados</h3>
-                <table class="items-simple-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 5%;">Item</th>
-                            <th style="width: 10%;">Qtd.</th>
-                            <th style="width: 10%;">Unid.</th>
-                            <th style="width: 15%;">Referência</th>
-                            <th style="width: 35%;">Descrição</th>
-                            <th style="width: 20%;">Link</th>
-                            <th style="width: 15%;">Imagem</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabelaItensSimples"></tbody>
-                </table>
-            </div>
-
-            <div style="text-align: center; margin-top: 30px;">
-                <button class="btn" onclick="imprimirRelatorio()">🖨️ Imprimir</button>
-                <button class="btn btn-danger" onclick="voltarFormulario()">🔙 Voltar</button>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn" onclick="imprimirRelatorio()">🖨️ Imprimir</button>
+                    <button class="btn btn-danger" onclick="voltarFormulario()">🔙 Voltar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Dados dos veículos/equipamentos
-    const veiculos = {
-        "AM-00064": { chassi: "93YMAF4MEEJ634527", fabricante: "RENAULT", modelo: "MASTER FURGÃO UTI", ano: "2012" },
-        "AM-00088": { chassi: "9BFLF49P8HB011899", fabricante: "FORD", modelo: "F4000", ano: "2017" },
-        "CÂMARA FRIGORÍFICA": { chassi: "9A9FR3883ECDB5485", fabricante: "NIJU", modelo: "NJSRFR 3E", ano: "2012" },
-        "CB-00566": { chassi: "9BFZEANE4JBS68029 1034799", fabricante: "FORD", modelo: "2629", ano: "2017" },
-        "CB-00569": { chassi: "9BFZEANE2JBS68031", fabricante: "FORD", modelo: "2629", ano: "2017" },
-        "CB-00593": { chassi: "9BM6933865B428451", fabricante: "MERCEDES BENZ", modelo: "2423K", ano: "2005" },
-        "CB-00685": { chassi: "9BM958170NB281372", fabricante: "MERCEDES BENZ", modelo: "ATEGO 2730", ano: "2022" },
-        "CB-00686": { chassi: "9BM958170NB281400", fabricante: "MERCEDES BENZ", modelo: "ATEGO 2730", ano: "2022" },
-        "CB-00687": { chassi: "9BM958170NB280581", fabricante: "MERCEDES BENZ", modelo: "ATEGO 2730", ano: "2022" },
-        "CB-00688": { chassi: "9BM958170NB280693", fabricante: "MERCEDES BENZ", modelo: "ATEGO 2730", ano: "2022" },
-        "CB-00689": { chassi: "9BM958170NB281107", fabricante: "MERCEDES BENZ", modelo: "ATEGO 2730", ano: "2022" },
-        "CB-NC-SGA-CB-CHASSI-96776": { chassi: "93KKZ60D2RE196776", fabricante: "VOLVO", modelo: "VM 360 6X4 R", ano: "2024" },
-        "CC-00751": { chassi: "9BM958034CB877619", fabricante: "MERCEDES BENZ", modelo: "ATEGO 1418/48 9TON 4X2", ano: "2012" },
-        "CDA-00046": { chassi: "9BM958074EB949227", fabricante: "MERCEDES BENZ", modelo: "ATEGO 1719", ano: "2014" },
-        "CDA-00063": { chassi: "9BFYEALE8KBS73458", fabricante: "FORD", modelo: "CARGO 2429", ano: "2018" },
-        "CG-00068": { chassi: "9BM958174JB087409", fabricantiante: "MERCEDES BENZ", modelo: "2730/48", ano: "2018" },
-        "CL-00056": { chassi: "9BFYCE7V2ABB56838", fabricante: "FORD", modelo: "CARGO 1722 É", ano: "2010" },
-        "CL-00071": { chassi: "9BFZEANE3DBS23054", fabricante: "FORD", modelo: "CARGO 2629", ano: "2012" },
-        "CM-00114": { chassi: "9BM958461AB730093", fabricante: "MERCEDES BENZ", modelo: "AXOR 2540", ano: "2010" },
-        "CM-00116": { chassi: "9BM958453KB118549 457910V1033488", fabricante: "MERCEDES BENZ", modelo: "AXOR TETO ALTO 2644 6X4S", ano: "2019" },
-        "CM-00117": { chassi: "9BSR6X400E3862856", fabricante: "SCANIA", modelo: "R480/R124", ano: "2014" },
-        "CO-00021": { chassi: "9BFYCE7V4ABB56193", fabricante: "FORD", modelo: "CARGO 1722 É", ano: "2010" },
-        "CO-00043": { chassi: "9BM6931825B423554", fabricante: "MERCEDES BENZ", modelo: "1720", ano: "2005" },
-        "CPD-00380": { chassi: "93XLJKL1TJCJ07238", fabricante: "MITSUBISHI", modelo: "TRITON-L200 SPT GL 2.4", ano: "2018" },
-        "CQT-00132": { chassi: "N/A", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
-        "CQT-00133": { chassi: "9533172S8DR342505", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
-        "CQT-00135": { chassi: "9533172S2ER402671", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
-        "CQT-00137": { chassi: "9533172S7DR319183", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
-        "CQT-00138": { chassi: "9533172S3DR331556", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
-        "CQT-00261": { chassi: "9533172S9DR319279", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
-        "CTA-00100": { chassi: "9BFZCE9V6ABB53372", fabricante: "FORD", modelo: "2622E", ano: "2010" },
-        "CTA-00120": { chassi: "9533B82U5DR312401", fabricante: "VOLKSWAGEN", modelo: "WORKER 26 260 É", ano: "2012" },
-        "CTA-00134": { chassi: "9533882U9DR319710", fabricante: "VOLKSWAGEN", modelo: "WORKER 26 260 É", ano: "2013" },
-        "CTA-00138": { chassi: "9533B8Z9DUR318735", fabricante: "VOLKSWAGEN", modelo: "WORKER 26 260 É", ano: "2013" },
-        "CTA-00177": { chassi: "93ZE12NMZJ8932865", fabricante: "IVECO", modelo: "TECTOR 260E30", ano: "2017" },
-        "CTC-00046": { chassi: "9BFZEANE2DBS30125", fabricante: "FORD", modelo: "2629", ano: "2011" },
-        "ONR-00079": { chassi: "9532882W5CR208047", fabricante: "VOLKSWAGEN", modelo: "SENIOR MIDI 15190", ano: "2012" },
-        "ONR-00077": { chassi: "9532J82Z4DR334433", fabricante: "VOLKSWAGEN", modelo: "18.320 EOT", ano: "2013" },
-        "ONU-00037": { chassi: "9532G82W4JR807599", fabricante: "VOLKSWAGEN", modelo: "17,230 GRAN VIA", ano: "2017" },
-        "PA-00003": { chassi: "9A9PR45638LDJ5016", fabricante: "LIBRELATOR", modelo: "SRPR3E", ano: "2007" },
-        "PB-00052": { chassi: "9A9P1463EECEM5027", fabricante: "MORUMBI", modelo: "SP,PR,3EX", ano: "2014" },
-        "PB-00069": { chassi: "9A9P1604DDCEM5168", fabricante: "MORUMBI", modelo: "PLATAFORMA", ano: "2013" },
-        "VTE-00003": { chassi: "9533B82U9HR703184", fabricante: "VOLKSWAGEN", modelo: "26 260", ano: "2016" },
-        "AB-00007": { chassi: "BX14M05009 MOTOR: B521497B", fabricante: "FIORI", modelo: "DB X35", ano: "2018" },
-        "CA-00080": { chassi: "625366700016", fabricante: "MOTOMIL", modelo: "CMAV20250", ano: "2019" },
+    <script>
+        // Base de dados dos veículos/equipamentos
+        const veiculos = {
+            "AM-00064": { chassi: "93YMAF4MEEJ634527", fabricante: "RENAULT", modelo: "MASTER FURGÃO UTI", ano: "2012" },
+            "AM-00088": { chassi: "9BFLF49P8HB011899", fabricante: "FORD", modelo: "F4000", ano: "2017" },
+            "CÂMARA FRIGORÍFICA": { chassi: "9A9FR3883ECDB5485", fabricante: "NIJU", modelo: "NJSRFR 3E", ano: "2012" },
+            "CB-00566": { chassi: "9BFZEANE4JBS68029 1034799", fabricante: "FORD", modelo: "2629", ano: "2017" },
+            "CB-00569": { chassi: "9BFZEANE2JBS68031", fabricante: "FORD", modelo: "2629", ano: "2017" },
+            "CB-00593": { chassi: "9BM6933865B428451", fabricante: "MERCEDES BENZ", modelo: "2423K", ano: "2005" },
+            "CB-00685": { chassi: "9BM958170NB281372", fabricante: "MERCEDES BENZ", modelo: "ATEGO 2730", ano: "2022" },
+            "CB-00686": { chassi: "9BM958170NB281400", fabricante: "MERCEDES BENZ", modelo: "ATEGO 2730", ano: "2022" },
+            "CB-00687": { chassi: "9BM958170NB280581", fabricante: "MERCEDES BENZ", modelo: "ATEGO 2730", ano: "2022" },
+            "CB-00688": { chassi: "9BM958170NB280693", fabricante: "MERCEDES BENZ", modelo: "ATEGO 2730", ano: "2022" },
+            "CB-00689": { chassi: "9BM958170NB281107", fabricante: "MERCEDES BENZ", modelo: "ATEGO 2730", ano: "2022" },
+            "CB-NC-SGA-CB-CHASSI-96776": { chassi: "93KKZ60D2RE196776", fabricante: "VOLVO", modelo: "VM 360 6X4 R", ano: "2024" },
+            "CC-00751": { chassi: "9BM958034CB877619", fabricante: "MERCEDES BENZ", modelo: "ATEGO 1418/48 9TON 4X2", ano: "2012" },
+            "CDA-00046": { chassi: "9BM958074EB949227", fabricante: "MERCEDES BENZ", modelo: "ATEGO 1719", ano: "2014" },
+            "CDA-00063": { chassi: "9BFYEALE8KBS73458", fabricante: "FORD", modelo: "CARGO 2429", ano: "2018" },
+            "CG-00068": { chassi: "9BM958174JB087409", fabricante: "MERCEDES BENZ", modelo: "2730/48", ano: "2018" },
+            "CL-00056": { chassi: "9BFYCE7V2ABB56838", fabricante: "FORD", modelo: "CARGO 1722 É", ano: "2010" },
+            "CL-00071": { chassi: "9BFZEANE3DBS23054", fabricante: "FORD", modelo: "CARGO 2629", ano: "2012" },
+            "CM-00114": { chassi: "9BM958461AB730093", fabricante: "MERCEDES BENZ", modelo: "AXOR 2540", ano: "2010" },
+            "CM-00116": { chassi: "9BM958453KB118549 457910V1033488", fabricante: "MERCEDES BENZ", modelo: "AXOR TETO ALTO 2644 6X4S", ano: "2019" },
+            "CM-00117": { chassi: "9BSR6X400E3862856", fabricante: "SCANIA", modelo: "R480/R124", ano: "2014" },
+            "CO-00021": { chassi: "9BFYCE7V4ABB56193", fabricante: "FORD", modelo: "CARGO 1722 É", ano: "2010" },
+            "CO-00043": { chassi: "9BM6931825B423554", fabricante: "MERCEDES BENZ", modelo: "1720", ano: "2005" },
+            "CPD-00380": { chassi: "93XLJKL1TJCJ07238", fabricante: "MITSUBISHI", modelo: "TRITON-L200 SPT GL 2.4", ano: "2018" },
+            "CQT-00132": { chassi: "N/A", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
+            "CQT-00133": { chassi: "9533172S8DR342505", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
+            "CQT-00135": { chassi: "9533172S2ER402671", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
+            "CQT-00137": { chassi: "9533172S7DR319183", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
+            "CQT-00138": { chassi: "9533172S3DR331556", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
+            "CQT-00261": { chassi: "9533172S9DR319279", fabricante: "VOLKSWAGEN", modelo: "WORKER EURO 4X4", ano: "2013" },
+            "CTA-00100": { chassi: "9BFZCE9V6ABB53372", fabricante: "FORD", modelo: "2622E", ano: "2010" },
+            "CTA-00120": { chassi: "9533B82U5DR312401", fabricante: "VOLKSWAGEN", modelo: "WORKER 26 260 É", ano: "2012" },
+            "CTA-00134": { chassi: "9533882U9DR319710", fabricante: "VOLKSWAGEN", modelo: "WORKER 26 260 É", ano: "2013" },
+            "CTA-00138": { chassi: "9533B8Z9DUR318735", fabricante: "VOLKSWAGEN", modelo: "WORKER 26 260 É", ano: "2013" },
+            "CTA-00177": { chassi: "93ZE12NMZJ8932865", fabricante: "IVECO", modelo: "TECTOR 260E30", ano: "2017" },
+            "CTC-00046": { chassi: "9BFZEANE2DBS30125", fabricante: "FORD", modelo: "2629", ano: "2011" },
+            "ONR-00079": { chassi: "9532882W5CR208047", fabricante: "VOLKSWAGEN", modelo: "SENIOR MIDI 15190", ano: "2012" },
+            "ONR-00077": { chassi: "9532J82Z4DR334433", fabricante: "VOLKSWAGEN", modelo: "18.320 EOT", ano: "2013" },
+            "ONU-00037": { chassi: "9532G82W4JR807599", fabricante: "VOLKSWAGEN", modelo: "17,230 GRAN VIA", ano: "2017" },
+            "PA-00003": { chassi: "9A9PR45638LDJ5016", fabricante: "LIBRELATO", modelo: "SRPR3E", ano: "2007" },
+            "PB-00052": { chassi: "9A9P1463EECEM5027", fabricante: "MORUMBI", modelo: "SP,PR,3EX", ano: "2014" },
+            "PB-00069": { chassi: "9A9P1604DDCEM5168", fabricante: "MORUMBI", modelo: "PLATAFORMA", ano: "2013" },
+            "VTE-00003": { chassi: "9533B82U9HR703184", fabricante: "VOLKSWAGEN", modelo: "26 260", ano: "2016" },
+            "AB-00007": { chassi: "BX14M05009 MOTOR: B521497B", fabricante: "FIORI", modelo: "DB X35", ano: "2018" },
+            "CA-00080": { chassi: "625366700016", fabricante: "MOTOMIL", modelo: "CMAV20250", ano: "2019" },
             "CR-00108": { chassi: "HBZBW20EEEAE06253", fabricante: "CASE", modelo: "W20E CAB", ano: "2013" },
             "CR-00120": { chassi: "KMTWA105TJBB20703", fabricante: "KOMATSU", modelo: "WA 200-6", ano: "2018" },
             "CR-00122": { chassi: "KMTWA105CJBB20612", fabricante: "KOMATSU", modelo: "WA200-6", ano: "2018" },
@@ -656,7 +656,7 @@
             "KM-00100": { chassi: "EQP: CPM4L18012513; MOTOR: T2180018010078103", fabricante: "MATSUYAMA", modelo: "CPM4L", ano: "2018" },
             "KP-00066": { chassi: "CAT0CW34P3G400157", fabricante: "CATERPILLAR", modelo: "CW34", ano: "2018" },
             "KP-00067": { chassi: "CAT0CW34J3G400159", fabricante: "CATERPILLAR", modelo: "CW34", ano: "2018" },
-                        "KP-00069": { chassi: "CAT0CW34P3G400160", fabricante: "CATERPILLAR", modelo: "CW34", ano: "2018" },
+            "KP-00069": { chassi: "CAT0CW34P3G400160", fabricante: "CATERPILLAR", modelo: "CW34", ano: "2018" },
             "MC-00023": { chassi: "JAFSV185466655", fabricante: "CASE", modelo: "SV185", ano: "2013" },
             "MN-00003": { chassi: "CAT0140HCCA02771", fabricante: "CATERPILLAR", modelo: "140 H", ano: "2006" },
             "MN-00138": { chassi: "CAT0140KCJPA01833", fabricante: "CATERPILLAR", modelo: "140K", ano: "2013" },
@@ -684,438 +684,349 @@
             "VM-NC-SGA-VM-FKT-01": { chassi: "10107/18", fabricante: "J COLOMBO", modelo: "TANGARA", ano: "2018" }
         };
 
-    let itensAdicionados = [];
-    let todosOsPrefixos = [];
-    let opcaoImagemAtiva = 'colar';
+        let itensAdicionados = [];
+        let todosOsPrefixos = [];
+        let opcaoImagemAtiva = 'colar';
 
-    let solicitacoesAbertas = [];
-    let solicitacaoEmEdicaoId = null;
+        // Carregar os dados quando a página carregar
+        window.onload = function () {
+            carregarPrefixos();
+            definirDataAtual();
+            configurarEventosImagem();
+        };
 
-    window.onload = function () {
-        carregarPrefixos();
-        definirDataAtual();
-        configurarEventosImagem();
-        atualizarListaSolicitacoes();
-    };
-
-    function definirDataAtual() {
-        const hoje = new Date();
-        const dataFormatada = hoje.toISOString().split('T')[0];
-        document.getElementById('dataSolicitacao').value = dataFormatada;
-    }
-
-    function carregarPrefixos() {
-        const select = document.getElementById('prefixo');
-        todosOsPrefixos = Object.keys(veiculos).sort();
-
-        select.innerHTML = '<option value="">Selecione o Prefixo</option>';
-
-        todosOsPrefixos.forEach(prefixo => {
-            const option = document.createElement('option');
-            option.value = prefixo;
-            option.textContent = prefixo;
-            select.appendChild(option);
-        });
-    }
-
-    function filtrarPrefixos() {
-        const searchTerm = document.getElementById('searchPrefixo').value.toLowerCase();
-        const select = document.getElementById('prefixo');
-
-        select.innerHTML = '<option value="">Selecione o Prefixo</option>';
-
-        const prefixosFiltrados = todosOsPrefixos.filter(prefixo =>
-            prefixo.toLowerCase().includes(searchTerm)
-        );
-
-        prefixosFiltrados.forEach(prefixo => {
-            const option = document.createElement('option');
-            option.value = prefixo;
-            option.textContent = prefixo;
-            select.appendChild(option);
-        });
-    }
-
-    function carregarDadosVeiculo() {
-        const prefixoSelecionado = document.getElementById('prefixo').value;
-
-        if (prefixoSelecionado && veiculos[prefixoSelecionado]) {
-            const veiculo = veiculos[prefixoSelecionado];
-            document.getElementById('marca').value = veiculo.fabricante;
-            document.getElementById('modelo').value = veiculo.modelo;
-            document.getElementById('ano').value = veiculo.ano;
-            document.getElementById('chassi').value = veiculo.chassi;
-        } else {
-            document.getElementById('marca').value = '';
-            document.getElementById('modelo').value = '';
-            document.getElementById('ano').value = '';
-            document.getElementById('chassi').value = '';
-        }
-    }
-
-    function alternarOpcaoImagem(opcao, event) {
-        opcaoImagemAtiva = opcao;
-
-        document.querySelectorAll('.image-option').forEach(el => el.classList.remove('active'));
-        if (event && event.currentTarget) {
-            event.currentTarget.classList.add('active');
+        function definirDataAtual() {
+            const hoje = new Date();
+            const dataFormatada = hoje.toISOString().split('T')[0];
+            document.getElementById('dataSolicitacao').value = dataFormatada;
         }
 
-        if (opcao === 'colar') {
-            document.getElementById('pasteArea').classList.remove('hidden');
-            document.getElementById('imagem').classList.add('hidden');
-        } else {
-            document.getElementById('pasteArea').classList.add('hidden');
-            document.getElementById('imagem').classList.remove('hidden');
+        function carregarPrefixos() {
+            const select = document.getElementById('prefixo');
+            todosOsPrefixos = Object.keys(veiculos).sort();
+
+            select.innerHTML = '<option value="">Selecione o Prefixo</option>';
+
+            todosOsPrefixos.forEach(prefixo => {
+                const option = document.createElement('option');
+                option.value = prefixo;
+                option.textContent = prefixo;
+                select.appendChild(option);
+            });
         }
-    }
 
-    function configurarEventosImagem() {
-        const pasteArea = document.getElementById('pasteArea');
+        function filtrarPrefixos() {
+            const searchTerm = document.getElementById('searchPrefixo').value.toLowerCase();
+            const select = document.getElementById('prefixo');
 
-        pasteArea.addEventListener('paste', function (e) {
-            e.preventDefault();
-            const items = e.clipboardData.items;
+            select.innerHTML = '<option value="">Selecione o Prefixo</option>';
 
-            for (let i = 0; i < items.length; i++) {
-                if (items[i].type.indexOf('image') !== -1) {
-                    const blob = items[i].getAsFile();
+            const prefixosFiltrados = todosOsPrefixos.filter(prefixo =>
+                prefixo.toLowerCase().includes(searchTerm)
+            );
+
+            prefixosFiltrados.forEach(prefixo => {
+                const option = document.createElement('option');
+                option.value = prefixo;
+                option.textContent = prefixo;
+                select.appendChild(option);
+            });
+        }
+
+        function carregarDadosVeiculo() {
+            const prefixoSelecionado = document.getElementById('prefixo').value;
+
+            if (prefixoSelecionado && veiculos[prefixoSelecionado]) {
+                const veiculo = veiculos[prefixoSelecionado];
+                document.getElementById('marca').value = veiculo.fabricante;
+                document.getElementById('modelo').value = veiculo.modelo;
+                document.getElementById('ano').value = veiculo.ano;
+                document.getElementById('chassi').value = veiculo.chassi;
+            } else {
+                document.getElementById('marca').value = '';
+                document.getElementById('modelo').value = '';
+                document.getElementById('ano').value = '';
+                document.getElementById('chassi').value = '';
+            }
+        }
+
+        function alternarOpcaoImagem(opcao, event) {
+            opcaoImagemAtiva = opcao;
+
+            // Atualizar aparência dos botões
+            document.querySelectorAll('.image-option').forEach(el => el.classList.remove('active'));
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+
+            // Mostrar/esconder elementos
+            if (opcao === 'colar') {
+                document.getElementById('pasteArea').classList.remove('hidden');
+                document.getElementById('imagem').classList.add('hidden');
+            } else {
+                document.getElementById('pasteArea').classList.add('hidden');
+                document.getElementById('imagem').classList.remove('hidden');
+            }
+        }
+
+        function configurarEventosImagem() {
+            const pasteArea = document.getElementById('pasteArea');
+
+            // Evento de colar
+            pasteArea.addEventListener('paste', function (e) {
+                e.preventDefault();
+                const items = e.clipboardData.items;
+
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].type.indexOf('image') !== -1) {
+                        const blob = items[i].getAsFile();
+                        const reader = new FileReader();
+                        reader.onload = function (event) {
+                            mostrarPreviewImagem(event.target.result);
+                        };
+                        reader.readAsDataURL(blob);
+                        break;
+                    }
+                }
+            });
+
+            // Eventos de drag and drop
+            pasteArea.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                pasteArea.classList.add('dragover');
+            });
+
+            pasteArea.addEventListener('dragleave', function (e) {
+                e.preventDefault();
+                pasteArea.classList.remove('dragover');
+            });
+
+            pasteArea.addEventListener('drop', function (e) {
+                e.preventDefault();
+                pasteArea.classList.remove('dragover');
+
+                const files = e.dataTransfer.files;
+                if (files.length > 0 && files[0].type.indexOf('image') !== -1) {
                     const reader = new FileReader();
                     reader.onload = function (event) {
                         mostrarPreviewImagem(event.target.result);
                     };
-                    reader.readAsDataURL(blob);
-                    break;
+                    reader.readAsDataURL(files[0]);
                 }
-            }
-        });
+            });
 
-        pasteArea.addEventListener('dragover', function (e) {
-            e.preventDefault();
-            pasteArea.classList.add('dragover');
-        });
+            // Tornar área focável para eventos de teclado
+            pasteArea.tabIndex = 0;
+        }
 
-        pasteArea.addEventListener('dragleave', function (e) {
-            e.preventDefault();
-            pasteArea.classList.remove('dragover');
-        });
+        function previewImagem() {
+            const input = document.getElementById('imagem');
 
-        pasteArea.addEventListener('drop', function (e) {
-            e.preventDefault();
-            pasteArea.classList.remove('dragover');
-
-            const files = e.dataTransfer.files;
-            if (files.length > 0 && files[0].type.indexOf('image') !== -1) {
+            if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function (event) {
-                    mostrarPreviewImagem(event.target.result);
+                reader.onload = function (e) {
+                    mostrarPreviewImagem(e.target.result);
                 };
-                reader.readAsDataURL(files[0]);
+                reader.readAsDataURL(input.files[0]);
             }
-        });
-
-        pasteArea.tabIndex = 0;
-    }
-
-    function previewImagem() {
-        const input = document.getElementById('imagem');
-
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                mostrarPreviewImagem(e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
         }
-    }
 
-    function mostrarPreviewImagem(src) {
-        const preview = document.getElementById('imagemPreview');
-        preview.src = src;
-        preview.classList.remove('hidden');
-    }
+        function mostrarPreviewImagem(src) {
+            const preview = document.getElementById('imagemPreview');
+            preview.src = src;
+            preview.classList.remove('hidden');
+        }
 
-    function mostrarAlerta(tipo, mensagem) {
-        const container = document.getElementById('alertContainer');
-        const alerta = document.createElement('div');
-        alerta.className = `alert alert-${tipo}`;
-        alerta.textContent = mensagem;
+        function mostrarAlerta(tipo, mensagem) {
+            const container = document.getElementById('alertContainer');
+            const alerta = document.createElement('div');
+            alerta.className = `alert alert-${tipo}`;
+            alerta.textContent = mensagem;
 
-        container.innerHTML = '';
-        container.appendChild(alerta);
-
-        setTimeout(() => {
             container.innerHTML = '';
-        }, 5000);
-    }
+            container.appendChild(alerta);
 
-    function adicionarOuAtualizarItem() {
-        const referencia = document.getElementById('referencia').value.trim();
-        const descricao = document.getElementById('descricao').value.trim();
-        const link = document.getElementById('link').value.trim();
-        const quantidadeStr = document.getElementById('quantidade').value.trim();
-        const unidade = document.getElementById('unidade').value;
-        const preview = document.getElementById('imagemPreview');
-
-        if (!referencia || !descricao) {
-            mostrarAlerta('error', 'Por favor, preencha os campos obrigatórios (Referência e Descrição).');
-            return;
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
         }
 
-        const quantidade = Number(quantidadeStr);
-        if (!quantidade || quantidade < 1) {
-            mostrarAlerta('error', 'Por favor, informe uma quantidade válida (mínimo 1).');
-            return;
-        }
+        function adicionarItem() {
+            const referencia = document.getElementById('referencia').value.trim();
+            const descricao = document.getElementById('descricao').value.trim();
+            const link = document.getElementById('link').value.trim();
+            const quantidadeStr = document.getElementById('quantidade').value.trim();
+            const unidade = document.getElementById('unidade').value;
+            const preview = document.getElementById('imagemPreview');
 
-        const item = {
-            id: Date.now(),
-            referencia,
-            descricao,
-            link: link || 'Não informado',
-            quantidade,
-            unidade,
-            imagem: preview.classList.contains('hidden') ? null : preview.src
-        };
-
-        itensAdicionados.push(item);
-        atualizarListaItens();
-        limparFormularioItens();
-        mostrarAlerta('success', 'Item adicionado com sucesso!');
-    }
-
-    function atualizarListaItens() {
-        const container = document.getElementById('listaItens');
-
-        if (itensAdicionados.length === 0) {
-            container.innerHTML = '<p style="text-align: center; color: #7f8c8d; font-style: italic;">Nenhum item adicionado ainda.</p>';
-            return;
-        }
-
-        container.innerHTML = '';
-
-        itensAdicionados.forEach((item, index) => {
-            const itemCard = document.createElement('div');
-            itemCard.className = 'item-card';
-
-            itemCard.innerHTML = `
-                <div class="item-header">
-                    <span class="item-number">Item ${index + 1}</span>
-                    <button class="btn btn-danger" onclick="removerItem(${item.id})">🗑️ Remover</button>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
-                    <div>
-                        <strong>Qtd.:</strong><br>
-                        ${item.quantidade}
-                    </div>
-                    <div>
-                        <strong>Unid.:</strong><br>
-                        ${item.unidade}
-                    </div>
-                    <div>
-                        <strong>Referência:</strong><br>
-                        ${item.referencia}
-                    </div>
-                    <div>
-                        <strong>Descrição:</strong><br>
-                        ${item.descricao}
-                    </div>
-                    <div>
-                        <strong>Link:</strong><br>
-                        ${item.link !== 'Não informado' ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer">Ver Link</a>` : 'Não informado'}
-                    </div>
-                    ${item.imagem ? `<div><strong>Imagem:</strong><br><img src="${item.imagem}" style="max-width: 150px; max-height: 150px; border-radius: 5px;" alt="Imagem da peça ${item.referencia}"></div>` : ''}
-                </div>
-            `;
-
-            container.appendChild(itemCard);
-        });
-    }
-
-    function removerItem(itemId) {
-        if (confirm('Tem certeza que deseja remover este item?')) {
-            itensAdicionados = itensAdicionados.filter(item => item.id !== itemId);
-            atualizarListaItens();
-            mostrarAlerta('success', 'Item removido com sucesso!');
-        }
-    }
-
-    function limparFormularioItens() {
-        document.getElementById('referencia').value = '';
-        document.getElementById('descricao').value = '';
-        document.getElementById('link').value = '';
-        document.getElementById('quantidade').value = '1';
-        document.getElementById('unidade').value = 'UND';
-        document.getElementById('imagem').value = '';
-        document.getElementById('imagemPreview').classList.add('hidden');
-    }
-
-    function gerarRelatorio() {
-        const solicitante = document.getElementById('solicitante').value.trim();
-        const prefixo = document.getElementById('prefixo').value;
-
-        if (!solicitante) {
-            mostrarAlerta('error', 'Por favor, preencha o nome do solicitante.');
-            return;
-        }
-
-        if (!prefixo) {
-            mostrarAlerta('error', 'Por favor, selecione um veículo/equipamento.');
-            return;
-        }
-
-        if (itensAdicionados.length === 0) {
-            mostrarAlerta('error', 'Por favor, adicione pelo menos um item.');
-            return;
-        }
-
-        const novaSolicitacao = {
-            id: solicitacaoEmEdicaoId || Date.now(),
-            solicitante,
-            dataSolicitacao: document.getElementById('dataSolicitacao').value || new Date().toISOString().split('T')[0],
-            prefixo,
-            marca: document.getElementById('marca').value,
-            modelo: document.getElementById('modelo').value,
-            ano: document.getElementById('ano').value,
-            chassi: document.getElementById('chassi').value,
-            itens: [...itensAdicionados]
-        };
-
-        if (solicitacaoEmEdicaoId) {
-            const index = solicitacoesAbertas.findIndex(s => s.id === solicitacaoEmEdicaoId);
-            if (index !== -1) {
-                solicitacoesAbertas[index] = novaSolicitacao;
-                mostrarAlerta('success', 'Solicitação atualizada com sucesso!');
+            if (!referencia || !descricao) {
+                mostrarAlerta('error', 'Por favor, preencha os campos obrigatórios (Referência e Descrição).');
+                return;
             }
-            solicitacaoEmEdicaoId = null;
-        } else {
-            solicitacoesAbertas.push(novaSolicitacao);
-            mostrarAlerta('success', 'Solicitação adicionada com sucesso!');
+
+            const quantidade = Number(quantidadeStr);
+            if (!quantidade || quantidade < 1) {
+                mostrarAlerta('error', 'Por favor, informe uma quantidade válida (mínimo 1).');
+                return;
+            }
+
+            const item = {
+                id: Date.now(),
+                referencia,
+                descricao,
+                link: link || 'Não informado',
+                quantidade,
+                unidade,
+                imagem: preview.classList.contains('hidden') ? null : preview.src
+            };
+
+            itensAdicionados.push(item);
+            atualizarListaItens();
+            limparFormularioItens();
+            mostrarAlerta('success', 'Item adicionado com sucesso!');
         }
 
-        atualizarListaSolicitacoes();
+        function atualizarListaItens() {
+            const container = document.getElementById('listaItens');
 
-        preencherRelatorio(novaSolicitacao);
+            if (itensAdicionados.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #7f8c8d; font-style: italic;">Nenhum item adicionado ainda.</p>';
+                return;
+            }
 
-        document.getElementById('mainContent').classList.add('hidden');
-        document.getElementById('solicitacoesAbertasSection').classList.add('hidden');
-        document.getElementById('relatorio').classList.remove('hidden');
+            container.innerHTML = '';
 
-        limparFormulario();
-    }
+            itensAdicionados.forEach((item, index) => {
+                const itemCard = document.createElement('div');
+                itemCard.className = 'item-card';
 
-    function preencherRelatorio(solicitacao) {
-        document.getElementById('relSolicitante').textContent = solicitacao.solicitante;
-        document.getElementById('relDataSolicitacao').textContent = new Date(solicitacao.dataSolicitacao).toLocaleDateString('pt-BR');
-        document.getElementById('relPrefixo').textContent = solicitacao.prefixo;
-        document.getElementById('relMarca').textContent = solicitacao.marca;
-        document.getElementById('relModelo').textContent = solicitacao.modelo;
-        document.getElementById('relAno').textContent = solicitacao.ano;
-        document.getElementById('relChassi').textContent = solicitacao.chassi;
-
-        const tabelaItens = document.getElementById('tabelaItensSimples');
-        tabelaItens.innerHTML = '';
-
-        solicitacao.itens.forEach((item, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${item.quantidade}</td>
-                <td>${item.unidade}</td>
-                <td>${item.referencia}</td>
-                <td>${item.descricao}</td>
-                <td>${item.link !== 'Não informado' ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer">Ver Link</a>` : 'Não informado'}</td>
-                <td>${item.imagem ? `<img src="${item.imagem}" alt="Imagem da peça ${item.referencia}">` : 'Sem imagem'}</td>
-            `;
-            tabelaItens.appendChild(row);
-        });
-    }
-
-    function voltarFormulario() {
-        document.getElementById('mainContent').classList.remove('hidden');
-        document.getElementById('solicitacoesAbertasSection').classList.remove('hidden');
-        document.getElementById('relatorio').classList.add('hidden');
-    }
-
-    function imprimirRelatorio() {
-        window.print();
-    }
-
-    function limparFormulario() {
-        document.getElementById('solicitante').value = '';
-        definirDataAtual();
-        document.getElementById('prefixo').value = '';
-        carregarDadosVeiculo();
-        limparFormularioItens();
-        itensAdicionados = [];
-        atualizarListaItens();
-        solicitacaoEmEdicaoId = null;
-        document.getElementById('alertContainer').innerHTML = '';
-    }
-
-    function atualizarListaSolicitacoes() {
-        const container = document.getElementById('listaSolicitacoes');
-        container.innerHTML = '';
-
-        if (solicitacoesAbertas.length === 0) {
-            container.innerHTML = '<p style="text-align: center; color: #7f8c8d; font-style: italic;">Nenhuma solicitação aberta.</p>';
-            return;
-        }
-
-        solicitacoesAbertas.forEach((solicitacao, index) => {
-            const card = document.createElement('div');
-            card.className = 'solicitacao-card';
-
-            card.innerHTML = `
-                <div class="solicitacao-header">
-                    <strong>Solicitação #${index + 1} - ${solicitacao.solicitante} (${new Date(solicitacao.dataSolicitacao).toLocaleDateString('pt-BR')})</strong>
-                    <div class="solicitacao-buttons">
-                        <button class="btn btn-warning" onclick="editarSolicitacao(${solicitacao.id})">✏️ Editar</button>
-                        <button class="btn btn-danger" onclick="excluirSolicitacao(${solicitacao.id})">🗑️ Excluir</button>
+                itemCard.innerHTML = `
+                    <div class="item-header">
+                        <span class="item-number">Item ${index + 1}</span>
+                        <button class="btn btn-danger" onclick="removerItem(${item.id})">🗑️ Remover</button>
                     </div>
-                </div>
-                <div class="solicitacao-info">
-                    <div><strong>Prefixo:</strong> ${solicitacao.prefixo}</div>
-                    <div><strong>Veículo/Equipamento:</strong> ${solicitacao.marca} ${solicitacao.modelo} (${solicitacao.ano})</div>
-                    <div><strong>Chassi:</strong> ${solicitacao.chassi}</div>
-                    <div><strong>Itens:</strong> ${solicitacao.itens.length}</div>
-                </div>
-            `;
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                        <div>
+                            <strong>Qtd.:</strong><br>
+                            ${item.quantidade}
+                        </div>
+                        <div>
+                            <strong>Unid.:</strong><br>
+                            ${item.unidade}
+                        </div>
+                        <div>
+                            <strong>Referência:</strong><br>
+                            ${item.referencia}
+                        </div>
+                        <div>
+                            <strong>Descrição:</strong><br>
+                            ${item.descricao}
+                        </div>
+                        <div>
+                            <strong>Link:</strong><br>
+                            ${item.link !== 'Não informado' ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer">Ver Link</a>` : 'Não informado'}
+                        </div>
+                        ${item.imagem ? `<div><strong>Imagem:</strong><br><img src="${item.imagem}" style="max-width: 150px; max-height: 150px; border-radius: 5px;" alt="Imagem da peça ${item.referencia}"></div>` : ''}
+                    </div>
+                `;
 
-            container.appendChild(card);
-        });
-    }
-
-    function editarSolicitacao(id) {
-        const solicitacao = solicitacoesAbertas.find(s => s.id === id);
-        if (!solicitacao) return;
-
-        solicitacaoEmEdicaoId = id;
-
-        document.getElementById('solicitante').value = solicitacao.solicitante;
-        document.getElementById('dataSolicitacao').value = solicitacao.dataSolicitacao;
-        document.getElementById('prefixo').value = solicitacao.prefixo;
-        carregarDadosVeiculo();
-        document.getElementById('marca').value = solicitacao.marca;
-        document.getElementById('modelo').value = solicitacao.modelo;
-        document.getElementById('ano').value = solicitacao.ano;
-        document.getElementById('chassi').value = solicitacao.chassi;
-
-        itensAdicionados = [...solicitacao.itens];
-        atualizarListaItens();
-
-        document.getElementById('mainContent').classList.remove('hidden');
-        document.getElementById('solicitacoesAbertasSection').classList.add('hidden');
-        document.getElementById('relatorio').classList.add('hidden');
-    }
-
-    function excluirSolicitacao(id) {
-        if (confirm('Tem certeza que deseja excluir esta solicitação?')) {
-            solicitacoesAbertas = solicitacoesAbertas.filter(s => s.id !== id);
-            atualizarListaSolicitacoes();
-            mostrarAlerta('success', 'Solicitação excluída com sucesso!');
+                container.appendChild(itemCard);
+            });
         }
-    }
-</script>
+
+        function removerItem(itemId) {
+            if (confirm('Tem certeza que deseja remover este item?')) {
+                itensAdicionados = itensAdicionados.filter(item => item.id !== itemId);
+                atualizarListaItens();
+                mostrarAlerta('success', 'Item removido com sucesso!');
+            }
+        }
+
+        function limparFormularioItens() {
+            document.getElementById('referencia').value = '';
+            document.getElementById('descricao').value = '';
+            document.getElementById('link').value = '';
+            document.getElementById('quantidade').value = '1';
+            document.getElementById('unidade').value = 'UND';
+            document.getElementById('imagem').value = '';
+            document.getElementById('imagemPreview').classList.add('hidden');
+        }
+
+        function gerarRelatorio() {
+            const solicitante = document.getElementById('solicitante').value.trim();
+            const prefixo = document.getElementById('prefixo').value;
+
+            if (!solicitante) {
+                mostrarAlerta('error', 'Por favor, preencha o nome do solicitante.');
+                return;
+            }
+
+            if (!prefixo) {
+                mostrarAlerta('error', 'Por favor, selecione um veículo/equipamento.');
+                return;
+            }
+
+            if (itensAdicionados.length === 0) {
+                mostrarAlerta('error', 'Por favor, adicione pelo menos um item.');
+                return;
+            }
+
+            // Preencher dados do relatório
+            document.getElementById('relSolicitante').textContent = solicitante;
+            document.getElementById('relDataSolicitacao').textContent = document.getElementById('dataSolicitacao').value
+                ? new Date(document.getElementById('dataSolicitacao').value).toLocaleDateString('pt-BR')
+                : new Date().toLocaleDateString('pt-BR');
+            document.getElementById('relPrefixo').textContent = prefixo;
+            document.getElementById('relMarca').textContent = document.getElementById('marca').value;
+            document.getElementById('relModelo').textContent = document.getElementById('modelo').value;
+            document.getElementById('relAno').textContent = document.getElementById('ano').value;
+            document.getElementById('relChassi').textContent = document.getElementById('chassi').value;
+
+            // Preencher tabela de itens
+            const tabelaItens = document.getElementById('tabelaItensSimples');
+            tabelaItens.innerHTML = '';
+
+            itensAdicionados.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.quantidade}</td>
+                    <td>${item.unidade}</td>
+                    <td>${item.referencia}</td>
+                    <td>${item.descricao}</td>
+                    <td>${item.link !== 'Não informado' ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer">Ver Link</a>` : 'Não informado'}</td>
+                    <td>${item.imagem ? `<img src="${item.imagem}" alt="Imagem da peça ${item.referencia}">` : 'Sem imagem'}</td>
+                `;
+                tabelaItens.appendChild(row);
+            });
+
+            // Mostrar relatório
+            document.querySelector('.main-content').classList.add('hidden');
+            document.getElementById('relatorio').classList.remove('hidden');
+        }
+
+        function voltarFormulario() {
+            document.querySelector('.main-content').classList.remove('hidden');
+            document.getElementById('relatorio').classList.add('hidden');
+        }
+
+        function imprimirRelatorio() {
+            window.print();
+        }
+
+        function limparFormulario() {
+            if (confirm('Tem certeza que deseja limpar todos os dados? Esta ação não pode ser desfeita.')) {
+                document.getElementById('solicitante').value = '';
+                definirDataAtual();
+                document.getElementById('prefixo').value = '';
+                carregarDadosVeiculo();
+                limparFormularioItens();
+                itensAdicionados = [];
+                atualizarListaItens();
+                document.getElementById('alertContainer').innerHTML = '';
+                mostrarAlerta('success', 'Formulário limpo com sucesso!');
+            }
+        }
+    </script>
 </body>
 </html>
