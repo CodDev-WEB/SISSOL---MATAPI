@@ -529,7 +529,7 @@
                     </div>
 
                     <div class="info-section">
-                        <h3>Dados do Veículo/Equipamento</h3>
+                        <h3>Dados da Viatura/Equipamento</h3>
                         <div class="info-line">
                             <span class="info-label">Prefixo:</span>
                             <span id="relPrefixo">-</span>
@@ -580,7 +580,7 @@
     </div>
 
     <script>
-        // Base de dados dos veículos/equipamentos
+        // Base de dados das viaturas/equipamentos
         const veiculos = {
             "AM-00064": { chassi: "93YMAF4MEEJ634527", fabricante: "RENAULT", modelo: "MASTER FURGÃO UTI", ano: "2012" },
             "AM-00088": { chassi: "9BFLF49P8HB011899", fabricante: "FORD", modelo: "F4000", ano: "2017" },
@@ -973,7 +973,7 @@
             }
 
             if (!prefixo) {
-                mostrarAlerta('error', 'Por favor, selecione um veículo/equipamento.');
+                mostrarAlerta('error', 'Por favor, selecione uma viatura/equipamento.');
                 return;
             }
 
