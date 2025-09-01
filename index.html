@@ -13,7 +13,7 @@
 
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #667eea; */cor de fundo da página/
+        background-color: #667eea;
         min-height: 100vh;
         padding: 20px;
     }
@@ -28,7 +28,7 @@
     }
 
     .header {
-        background-color: #005D9F; */Fundo do Cabeçalho/
+        background-color: #005D9F;
         color: white;
         padding: 30px;
         text-align: center;
@@ -71,7 +71,7 @@
 
     .form-row {
         display: grid;
-        grid-area: ;-template-columns: repeat(auto-fit, minmax(180px, -1fr));
+        grid-template-columns: repeat(auto-fit, minmax(180px, -1fr));
         gap: 10px;
         margin-bottom: 1px;
     }
@@ -365,11 +365,10 @@
         padding: 8px;
         font-size: 14px;
     }
-
-    .input {
+    
+    input {
         text-transform: uppercase;
     }
-       
 </style>
 
 </head>
@@ -585,7 +584,7 @@
     </div>
 
     <script>
-        // Base de dados das viaturas/equipamentos
+        // Base de dados dos veículos/equipamentos
         const veiculos = {
             "AM-00064": { chassi: "93YMAF4MEEJ634527", fabricante: "RENAULT", modelo: "MASTER FURGÃO UTI", ano: "2012" },
             "AM-00088": { chassi: "9BFLF49P8HB011899", fabricante: "FORD", modelo: "F4000", ano: "2017" },
@@ -969,7 +968,9 @@
         }
 
         function gerarRelatorio() {
-            const solicitante = document.getElementById('solicitante').value.trim();
+            const solicitanteInput = document.getElementById('solicitante');
+            const solicitante = solicitanteInput.value.trim().toUpperCase(); // converte para maiúsculas
+            solicitanteInput.value = solicitante; // atualiza o campo com maiúsculas
             const prefixo = document.getElementById('prefixo').value;
 
             if (!solicitante) {
@@ -978,7 +979,7 @@
             }
 
             if (!prefixo) {
-                mostrarAlerta('error', 'Por favor, selecione uma viatura/equipamento.');
+                mostrarAlerta('error', 'Por favor, selecione um veículo/equipamento.');
                 return;
             }
 
