@@ -879,109 +879,119 @@
                             ${item.referencia}
                         </div>
                         <div>
-                            <strong>Descrição:</strong><br>
-                            ${item.descricao}
-                        </div>
-                        <div>
-                            <strong>Link:</strong><br>
-                            ${item.link !== 'Não informado' ? `<a href="${item.link}" target="_blank">Ver Link</a>` : 'Não informado'}
-                        </div>
-                        ${item.imagem ? `<div><strong>Imagem:</strong><br><img src="${item.imagem}" style="max-width: 150px; max-height: 150px; border-radius: 5px;" alt="Imagem da peça ${item.referencia}"></div>` : ''}
+                        <strong>Quantidade:</strong><br>
+                        ${item.quantidade} ${item.unidade}
                     </div>
-                `;
-                
-                container.appendChild(itemCard);
-            });
+                    <div>
+                        <strong>Descrição:</strong><br>
+                        ${item.descricao}
+                    </div>
+                    <div>
+                        <strong>Link:</strong><br>
+                        ${item.link !== 'Não informado' ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer">Ver Link</a>` : 'Não informado'}
+                    </div>
+                    ${item.imagem ? `<div><strong>Imagem:</strong><br><img src="${item.imagem}" style="max-width: 150px; max-height: 150px; border-radius: 5px;" alt="Imagem da peça ${item.referencia}"></div>` : ''}
+                </div>
+            `;
+            container.appendChild(itemCard);
+        });
+    }
+    // Remove item da lista pelo id
+    function removerItem(id) {
+        itensAdicionados = itensAdicionados.filter(item => item.id !== id);
+        atualizarListaItens();
+    }
+    // Limpa os campos do formulário de itens
+    function limparFormularioItens() {
+        document.getElementById('referencia').value = '';
+        document.getElementById('descricao').value = '';
+        document.getElementById('link').value = '';
+        document.getElementById('imagem').value = '';
+        document.getElementById('imagemPreview').src = '';
+        document.getElementById('imagemPreview').classList.add('hidden');
+        document.getElementById('quantidade').value = '1';
+        document.getElementById('unidade').value = 'Unidade';
+    }
+    // Limpa todo o formulário e lista de itens
+    function limparFormulario() {
+        if (confirm('Tem certeza que deseja limpar todos os dados?')) {
+            document.getElementById('solicitante').value = '';
+            document.getElementById('dataSolicitacao').value = '';
+            document.getElementById('prefixo').value = '';
+            document.getElementById('marca').value = '';
+            document.getElementById('modelo').value = '';
+            document.getElementById('ano').value = '';
+            document.getElementById('chassi').value = '';
+            limparFormularioItens();
+            itensAdicionados = [];
+            atualizarListaItens();
+            mostrarAlerta('success', 'Formulário limpo com sucesso!');
+        }
+    }
+     // Gera o relatório preenchendo os dados e exibindo a seção de relatório
+    function gerarRelatorio() {
+        const solicitante = document.getElementById('solicitante').value.trim();
+        const prefixo = document.getElementById('prefixo').value;
+        if (!solicitante) {
+            mostrarAlerta('error', 'Por favor, preencha o nome do solicitante.');
+            return;
+        }
+        if (!prefixo) {
+            mostrarAlerta('error', 'Por favor, selecione um veículo/equipamento.');
+            return;
         }
 
-        function removerItem(itemId) {
-            if (confirm('Tem certeza que deseja remover este item?')) {
-                itensAdicionados = itensAdicionados.filter(item => item.id !== itemId);
-                atualizarListaItens();
-                mostrarAlerta('success', 'Item removido com sucesso!');
-            }
+        if (itensAdicionados.length === 0) {
+            mostrarAlerta('error', 'Por favor, adicione pelo menos um item.');
+            return;
         }
+        // Preencher dados do relatório
+        document.getElementById('relSolicitante').textContent = solicitante;
+        document.getElementById('relDataSolicitacao').textContent = document.getElementById('dataSolicitacao').value
+            ? new Date(document.getElementById('dataSolicitacao').value).toLocaleDateString('pt-BR')
+            : new Date().toLocaleDateString('pt-BR');
+        document.getElementById('relPrefixo').textContent = prefixo;
+        document.getElementById('relMarca').textContent = document.getElementById('marca').value;
+        document.getElementById('relModelo').textContent = document.getElementById('modelo').value;
+        document.getElementById('relAno').textContent = document.getElementById('ano').value;
+        document.getElementById('relChassi').textContent = document.getElementById('chassi').value;
 
-        function limparFormularioItens() {
-            document.getElementById('referencia').value = '';
-            document.getElementById('descricao').value = '';
-            document.getElementById('link').value = '';
-            document.getElementById('imagem').value = '';
-            document.getElementById('imagemPreview').classList.add('hidden');
-        }
+        // Preencher tabela de itens
+        const tabelaItens = document.getElementById('tabelaItensSimples');
+        tabelaItens.innerHTML = '';
+        itensAdicionados.forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${item.referencia}</td>
+                <td>${item.descricao}</td>
+                <td>${item.quantidade} ${item.unidade}</td>
+                <td>${item.link !== 'Não informado' ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer">Ver Link</a>` : 'Não informado'}</td>
+                <td>${item.imagem ? `<img src="${item.imagem}" alt="Imagem da peça ${item.referencia}">` : 'Sem imagem'}</td>
+            `;
+            tabelaItens.appendChild(row);
+        });
+        // Mostrar relatório e esconder formulário
+        document.querySelector('.main-content').classList.add('hidden');
+        document.getElementById('relatorio').classList.remove('hidden');
+    }
+    // Voltar para o formulário a partir do relatório
+    function voltarFormulario() {
+        document.getElementById('relatorio').classList.add('hidden');
+        document.querySelector('.main-content').classList.remove('hidden');
+    }
 
-        function gerarRelatorio() {
-            const solicitante = document.getElementById('solicitante').value.trim();
-            const prefixo = document.getElementById('prefixo').value;
-            
-            if (!solicitante) {
-                mostrarAlerta('error', 'Por favor, preencha o nome do solicitante.');
-                return;
-            }
-            
-            if (!prefixo) {
-                mostrarAlerta('error', 'Por favor, selecione um veículo/equipamento.');
-                return;
-            }
-            
-            if (itensAdicionados.length === 0) {
-                mostrarAlerta('error', 'Por favor, adicione pelo menos um item.');
-                return;
-            }
-            
-            // Preencher dados do relatório
-            document.getElementById('relSolicitante').textContent = solicitante;
-            document.getElementById('relDataSolicitacao').textContent = document.getElementById('dataSolicitacao').value ? new Date(document.getElementById('dataSolicitacao').value).toLocaleDateString('pt-BR') : new Date().toLocaleDateString('pt-BR');
-            document.getElementById('relPrefixo').textContent = prefixo;
-            document.getElementById('relMarca').textContent = document.getElementById('marca').value;
-            document.getElementById('relModelo').textContent = document.getElementById('modelo').value;
-            document.getElementById('relAno').textContent = document.getElementById('ano').value;
-            document.getElementById('relChassi').textContent = document.getElementById('chassi').value;
-            
-            // Preencher tabela de itens
-            const tabelaItens = document.getElementById('tabelaItensSimples');
-            tabelaItens.innerHTML = '';
-            
-            itensAdicionados.forEach((item, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${item.referencia}</td>
-                    <td>${item.descricao}</td>
-                    <td>${item.link !== 'Não informado' ? `<a href="${item.link}" target="_blank">Ver Link</a>` : 'Não informado'}</td>
-                    <td>${item.imagem ? `<img src="${item.imagem}" alt="Imagem da peça ${item.referencia}">` : 'Sem imagem'}</td>
-                `;
-                tabelaItens.appendChild(row);
-            });
-            
-            // Mostrar relatório
-            document.querySelector('.main-content').classList.add('hidden');
-            document.getElementById('relatorio').classList.remove('hidden');
-        }
-
-        function voltarFormulario() {
-            document.querySelector('.main-content').classList.remove('hidden');
-            document.getElementById('relatorio').classList.add('hidden');
-        }
-
-        function imprimirRelatorio() {
-            window.print();
-        }
-
-        function limparFormulario() {
-            if (confirm('Tem certeza que deseja limpar todos os dados? Esta ação não pode ser desfeita.')) {
-                document.getElementById('solicitante').value = '';
-                definirDataAtual();
-                document.getElementById('prefixo').value = '';
-                carregarDadosVeiculo();
-                limparFormularioItens();
-                itensAdicionados = [];
-                atualizarListaItens();
-                document.getElementById('alertContainer').innerHTML = '';
-                mostrarAlerta('success', 'Formulário limpo com sucesso!');
-            }
-        }
-    </script>
+        // Imprimir relatório
+    function imprimirRelatorio() {
+        window.print();
+    }
+    // Inicialização
+    window.onload = function() {
+        preencherPrefixos();
+        configurarPasteArea();
+        alternarOpcaoImagem('colar');
+        atualizarListaItens();
+    };
+</script>
 </body>
 </html>
-
