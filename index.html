@@ -878,7 +878,7 @@
                             <strong>Referência:</strong><br>
                             ${item.referencia}
                         </div>
-                        <div>
+                                            <div>
                         <strong>Quantidade:</strong><br>
                         ${item.quantidade} ${item.unidade}
                     </div>
@@ -893,14 +893,17 @@
                     ${item.imagem ? `<div><strong>Imagem:</strong><br><img src="${item.imagem}" style="max-width: 150px; max-height: 150px; border-radius: 5px;" alt="Imagem da peça ${item.referencia}"></div>` : ''}
                 </div>
             `;
+
             container.appendChild(itemCard);
         });
     }
+
     // Remove item da lista pelo id
     function removerItem(id) {
         itensAdicionados = itensAdicionados.filter(item => item.id !== id);
         atualizarListaItens();
     }
+
     // Limpa os campos do formulário de itens
     function limparFormularioItens() {
         document.getElementById('referencia').value = '';
@@ -912,6 +915,7 @@
         document.getElementById('quantidade').value = '1';
         document.getElementById('unidade').value = 'Unidade';
     }
+
     // Limpa todo o formulário e lista de itens
     function limparFormulario() {
         if (confirm('Tem certeza que deseja limpar todos os dados?')) {
@@ -928,14 +932,17 @@
             mostrarAlerta('success', 'Formulário limpo com sucesso!');
         }
     }
-     // Gera o relatório preenchendo os dados e exibindo a seção de relatório
+
+    // Gera o relatório preenchendo os dados e exibindo a seção de relatório
     function gerarRelatorio() {
         const solicitante = document.getElementById('solicitante').value.trim();
         const prefixo = document.getElementById('prefixo').value;
+
         if (!solicitante) {
             mostrarAlerta('error', 'Por favor, preencha o nome do solicitante.');
             return;
         }
+
         if (!prefixo) {
             mostrarAlerta('error', 'Por favor, selecione um veículo/equipamento.');
             return;
@@ -945,6 +952,7 @@
             mostrarAlerta('error', 'Por favor, adicione pelo menos um item.');
             return;
         }
+
         // Preencher dados do relatório
         document.getElementById('relSolicitante').textContent = solicitante;
         document.getElementById('relDataSolicitacao').textContent = document.getElementById('dataSolicitacao').value
@@ -959,6 +967,7 @@
         // Preencher tabela de itens
         const tabelaItens = document.getElementById('tabelaItensSimples');
         tabelaItens.innerHTML = '';
+
         itensAdicionados.forEach((item, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -971,20 +980,23 @@
             `;
             tabelaItens.appendChild(row);
         });
+
         // Mostrar relatório e esconder formulário
         document.querySelector('.main-content').classList.add('hidden');
         document.getElementById('relatorio').classList.remove('hidden');
     }
+
     // Voltar para o formulário a partir do relatório
     function voltarFormulario() {
         document.getElementById('relatorio').classList.add('hidden');
         document.querySelector('.main-content').classList.remove('hidden');
     }
 
-        // Imprimir relatório
+    // Imprimir relatório
     function imprimirRelatorio() {
         window.print();
     }
+
     // Inicialização
     window.onload = function() {
         preencherPrefixos();
