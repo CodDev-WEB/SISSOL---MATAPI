@@ -510,78 +510,84 @@
             </div>
 
             <!-- Botões de Ação -->
-            <div style="text-align: center; margin-top: 30px;">
+                <div style="text-align: center; margin-top: 30px;">
                 <button class="btn btn-warning" onclick="gerarRelatorio()">📄 Gerar Relatório</button>
                 <button class="btn btn-danger" onclick="limparFormulario()">🗑️ Limpar Tudo</button>
             </div>
         </div>
 
-        <!-- Relatório Simplificado -->
-        <div id="relatorio" class="hidden">
-            <div class="report">
-                <div class="report-info">
-                    <div class="info-section">
-                        <h3>Dados do Solicitante</h3>
-                        <div class="info-line">
-                            <span class="info-label">Nome:</span>
-                            <span id="relSolicitante">-</span>
-                        </div>
-                        <div class="info-line">
-                            <span class="info-label">Data:</span>
-                            <span id="relDataSolicitacao">-</span>
-                        </div>
-                    </div>
-
-                    <div class="info-section">
-                        <h3>Dados da Viatura/Equipamento</h3>
-                        <div class="info-line">
-                            <span class="info-label">Prefixo:</span>
-                            <span id="relPrefixo">-</span>
-                        </div>
-                        <div class="info-line">
-                            <span class="info-label">Fabricante:</span>
-                            <span id="relMarca">-</span>
-                        </div>
-                        <div class="info-line">
-                            <span class="info-label">Modelo:</span>
-                            <span id="relModelo">-</span>
-                        </div>
-                        <div class="info-line">
-                            <span class="info-label">Ano:</span>
-                            <span id="relAno">-</span>
-                        </div>
-                        <div class="info-line">
-                            <span class="info-label">Chassi:</span>
-                            <span id="relChassi">-</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h3>Itens Solicitados</h3>
-                    <table class="items-simple-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 5%;">Item</th>
-                                <th style="width: 10%;">Qtd.</th>
-                                <th style="width: 10%;">Unid.</th>
-                                <th style="width: 15%;">Referência</th>
-                                <th style="width: 35%;">Descrição</th>
-                                <th style="width: 20%;">Link</th>
-                                <th style="width: 15%;">Imagem</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabelaItensSimples"></tbody>
-                    </table>
-                </div>
-
-                <div style="text-align: center; margin-top: 30px;">
-                    <button class="btn" onclick="imprimirRelatorio()">🖨️ Imprimir</button>
-                    <button class="btn btn-danger" onclick="voltarFormulario()">🔙 Voltar</button>
-                </div>
-            </div>
+<!-- Relatório Simplificado -->
+<div id="relatorio" class="hidden">
+  <div class="report">
+    <div class="report-info">
+      <div class="info-section">
+        <h3>Dados do Solicitante</h3>
+        <div class="info-line">
+          <span class="info-label">Nome:</span>
+          <span id="relSolicitante">-</span>
         </div>
+        <div class="info-line">
+          <span class="info-label">Data:</span>
+          <span id="relDataSolicitacao">-</span>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h3>Dados da Viatura/Equipamento</h3>
+        <div class="info-line">
+          <span class="info-label">Prefixo:</span>
+          <span id="relPrefixo">-</span>
+        </div>
+        <div class="info-line">
+          <span class="info-label">Fabricante:</span>
+          <span id="relMarca">-</span>
+        </div>
+        <div class="info-line">
+          <span class="info-label">Modelo:</span>
+          <span id="relModelo">-</span>
+        </div>
+        <div class="info-line">
+          <span class="info-label">Ano:</span>
+          <span id="relAno">-</span>
+        </div>
+        <div class="info-line">
+          <span class="info-label">Chassi:</span>
+          <span id="relChassi">-</span>
+        </div>
+      </div>
     </div>
+
+    <div>
+      <h3>Itens Solicitados</h3>
+      <table class="items-simple-table" style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="width: 5%; border: 1px solid #ddd; padding: 8px;">Item</th>
+            <th style="width: 10%; border: 1px solid #ddd; padding: 8px;">Qtd.</th>
+            <th style="width: 10%; border: 1px solid #ddd; padding: 8px;">Unid.</th>
+            <th style="width: 15%; border: 1px solid #ddd; padding: 8px;">Referência</th>
+            <th style="width: 35%; border: 1px solid #ddd; padding: 8px;">Descrição</th>
+            <th style="width: 20%; border: 1px solid #ddd; padding: 8px;">Link</th>
+            <th style="width: 15%; border: 1px solid #ddd; padding: 8px;">Imagem</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaItensSimples"></tbody>
+      </table>
+    </div>
+
+    
+    <!-- Bibliotecas para gerar PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    
+
+    <div style="text-align: center; margin-top: 30px;">
+      <button class="btn" onclick="imprimirRelatorio()">📥 Gerar PDF</button>
+      <button class="btn btn-danger" onclick="voltarFormulario()">🔙 Voltar</button>
+    </div>
+  </div>
+</div>
 
     <script>
         // Base de dados dos veículos/equipamentos
@@ -966,6 +972,7 @@
             document.getElementById('imagem').value = '';
             document.getElementById('imagemPreview').classList.add('hidden');
         }
+        
 
         function gerarRelatorio() {
             const solicitanteInput = document.getElementById('solicitante');
@@ -1044,7 +1051,22 @@
                 mostrarAlerta('success', 'Formulário limpo com sucesso!');
             }
         }
-    </script>
-    
+        
+        async function gerarPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'pt', 'a4');
+            const relatorio = document.getElementById('relatorio');
+          // Captura o conteúdo do relatório como imagem
+            const canvas = await html2canvas(relatorio, { scale: 2 });
+            const imgData = canvas.toDataURL('image/png');
+            const imgProps = doc.getImageProperties(imgData);
+            const pdfWidth = doc.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            doc.save('relatorio.pdf');
+        }
+
+        
+</script>
 </body>
 </html>
